@@ -1,5 +1,7 @@
 <?php
 
+if (! defined('BASEPATH')) exit('No direct script access allowed');
+
 class Cliente {
     
     /**
@@ -44,6 +46,27 @@ class Cliente {
      */
     protected $nombre;
     
+    /**
+     * $key
+     *
+     * @var string  clave privada de 2048bits.
+     */
+    protected $key;
+    
+    /**
+     * $cert
+     *
+     * @var string  certificado obtenido de afip asociado al webservice de facturacion.
+     */
+    protected $cert;
+    
+    public function __construct($nombre) {
+        $this->nombre = $nombre;
+    }
+
+    public function saludar() {
+        return "Hola ".$this->nombre;
+    }
 
 }
 
