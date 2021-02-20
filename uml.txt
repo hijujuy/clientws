@@ -1,0 +1,50 @@
+Requisitos previos del cliente:
+- figurar como inscripto en afip.
+- autorizado para emitir facturas.
+- contar con un punto de venta o sucursal habilitada para facturar.
+- tener habilitado el servicio de webservice de facturacion de afip.
+
+Especificaciones:
+- El cliente debe registrarse con sus datos personales en el sistema, llenando el formulario.
+- El cliente necesita emitir facturas tipo C.
+
+Casos de Uso:
+- Generacion de clave privada (archivo con extension key).
+- Generacion de CSR solicitud de certificado (archivo con extension csr).
+- Generacion de Ticket de Requerimiento de Acceso para Afip (archivo tra.xml).
+- Solicitud de Ticket de Acceso (ta.xml).
+- Solicitud de CAE desde wsfev1.
+
+WSASS - Servicio afip para gestionar certificados testing.
+Clave . MiClavePrivada.key
+CSR   . MiPedidoCSR.csr
+Empresa [O] = facturacion
+Sistema (alias)[CN] = factuweb
+DN = demows
+Certificado . MiCertificado.pem (crt)
+
+OK. Autorización fue creada 
+CUITCOMPUTADOR=20280637352,
+ALIASCOMPUTADOR=demows,
+CUITREPRESENTADO=20280637352,
+SERVICIO=ws://ws_sr_constancia_inscripcion,
+CUITAUTORIZANTE=20280637352
+password pfx: demows
+
+Constantes:
+serviciows  => "wsfe"
+
+Cliente:
+CUIT        => long unico
+DNI         => long unico
+Email       => string
+Apellido    => string
+Nombre      => string
+ClavePrivada => string // clave de 4096bits con password
+dn          => array Dn:
+                        countryName         => AR
+                        stateOrProvinceName => Provincia
+                        localityName        => Localidad
+                        organizationName    => Nombre y Apellido cliente Titular
+                        commonName          => alias    // nombre de usuario
+                        serialNumber        => nro cuit

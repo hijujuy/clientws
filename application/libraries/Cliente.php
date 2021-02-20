@@ -1,35 +1,73 @@
-WSASS - Servicio afip para gestionar certificados testing.
-Clave . MiClavePrivada.key
-CSR   . MiPedidoCSR.csr
-Empresa [O] = facturacion
-Sistema (alias)[CN] = factuweb
-DN = demows
-Certificado . MiCertificado.pem (crt)
+<?php
 
-OK. Autorización fue creada 
-CUITCOMPUTADOR=20280637352,
-ALIASCOMPUTADOR=demows,
-CUITREPRESENTADO=20280637352,
-SERVICIO=ws://ws_sr_constancia_inscripcion,
-CUITAUTORIZANTE=20280637352
-password pfx: demows
+if (! defined('BASEPATH')) exit('No direct script access allowed');
 
-Constantes:
-serviciows  => "wsfe"
+class Cliente {
+    
+    /**
+     * $id
+     *
+     * @var int     identificador de registro en base de datos.
+     */
+    protected $id;
 
-Cliente:
-CUIT        => long unico
-DNI         => long unico
-Email       => string
-Apellido    => string
-Nombre      => string
-ClavePrivada => string // clave de 4096bits con password
-dn          => array Dn:
-                        countryName         => AR
-                        stateOrProvinceName => Provincia
-                        localityName        => Localidad
-                        organizationName    => Nombre y Apellido cliente Titular
-                        commonName          => alias    // nombre de usuario
-                        serialNumber        => nro cuit
+    /**
+     * $email
+     *
+     * @var string  email del cliente registrado.
+     */
+    protected $email;
 
+    /**
+     * $cuit
+     *
+     * @var long   cuit del cliente.
+     */
+    protected $cuit;
 
+    /**
+     * $dni
+     *
+     * @var long    dni del cliente.
+     */
+    protected $dni;
+
+    /**
+     * $apellido
+     *
+     * @var string  apellido del cliente.
+     */
+    protected $apellido;
+
+    /**
+     * $nombre
+     *
+     * @var string  nombre del cliente registrado.
+     */
+    protected $nombre;
+    
+    /**
+     * $key
+     *
+     * @var string  clave privada de 2048bits.
+     */
+    protected $key;
+    
+    /**
+     * $cert
+     *
+     * @var string  certificado obtenido de afip asociado al webservice de facturacion.
+     */
+    protected $cert;
+    
+    public function __construct($nombre) {
+        $this->nombre = $nombre;
+    }
+
+    public function saludar() {
+        return "Hola ".$this->nombre;
+    }
+
+}
+
+?>
